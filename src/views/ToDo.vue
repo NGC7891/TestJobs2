@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue';
 import { useTasksStore } from '@/stores/tasksStore';
 import type { Task, NewTask } from '@/types';
 import { useDebounce } from '@vueuse/core';
+import { UIButton } from '@/components/UI';
 
 const store = useTasksStore();
 
@@ -105,6 +106,11 @@ onMounted(async () => {
 
 <template>
   <main>
+    <!-- ОТЛАДКА КОМПОНЕНТОВ -->
+    <div>
+      <UIButton text="Добавить" :spacing="{ x: 'md', y: 'sm' }" variant="accent" text-color="yellow" radius="r8" />
+    </div>
+
     <!-- Поиск по названию & сортировка-->
     <div>
       <input type="text" v-model="searchQuery">
