@@ -1,5 +1,5 @@
 <script setup lang="ts">
 </script>
 <template>
-  <button>Лейбл</button>
+  <button>Модалка</button>
 </template>
