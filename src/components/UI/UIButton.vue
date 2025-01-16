@@ -4,8 +4,11 @@ import type { Variant, TextColor, Spacing, BorderRadius } from './types'
 
 const styles = useCssModule()
 
+// Если не передали то не используем доп атрибуты внешнего класса
+defineOptions({ inheritAttrs: false })
+
 interface ButtonProps {
-  variant?: Exclude<Variant, 'info' | 'warning'>
+  variant?: Exclude<Variant, 'info'>
   spacing?: Spacing
   disabled?: boolean
   textColor?: TextColor
@@ -16,7 +19,7 @@ interface ButtonProps {
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
-  spacing: () => ({ x: 'lg', y: 'sm' }),
+  spacing: () => ({ x: 'none', y: 'none' }),
   radius: 'r0',
   disabled: false,
   fullWidth: false,
@@ -54,7 +57,7 @@ const handleClick = (event: MouseEvent) => {
 
 </script>
 <template>
-  <button :class="buttonClasses" :disabled="disabled" @click="handleClick">
+  <button :class="[buttonClasses, $attrs.class]" :disabled="disabled" @click.prevent="handleClick">
     <span v-if="text" :class="textClasses">
       {{ text }}
     </span>
@@ -85,6 +88,11 @@ const handleClick = (event: MouseEvent) => {
 }
 
 /* Модификаторы падинга у контента */
+.button-spacing-x_none {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .button-spacing-x_xs {
   padding-left: var(--space-xs);
   padding-right: var(--space-xs);
@@ -108,6 +116,11 @@ const handleClick = (event: MouseEvent) => {
 .button-spacing-x_xl {
   padding-left: var(--space-xl);
   padding-right: var(--space-xl);
+}
+
+.button-spacing-y_none {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .button-spacing-y_xs {
