@@ -41,7 +41,7 @@ const toogleTasksSelected = (id: string) => {
 const handleSubmit = async () => {
   if (!newTask.value.title.trim()) return
   await store.addTask(newTask.value)
-  clearNewTask
+  clearNewTask()
 };
 
 
