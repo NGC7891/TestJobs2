@@ -57,7 +57,7 @@ const handleClick = (event: MouseEvent) => {
 
 </script>
 <template>
-  <button :class="[buttonClasses, $attrs.class]" :disabled="disabled" @click.prevent="handleClick">
+  <button :class="[buttonClasses, $attrs.class]" :disabled="disabled" @click="handleClick">
     <span v-if="text" :class="textClasses">
       {{ text }}
     </span>

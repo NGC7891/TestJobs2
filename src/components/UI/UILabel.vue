@@ -155,7 +155,7 @@ const textClasses = computed(() => [
 }
 
 .label-bg_primary {
-  background-color: var(--color-text);
+  background-color: var(--color-background-label);
 }
 
 .label-bg_accent {

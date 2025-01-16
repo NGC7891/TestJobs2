@@ -32,7 +32,6 @@ const clearSearchQuery = () => searchQuery.value = "";
 
 const toogleTasksSelected = (id: string) => {
   if (selectedTasks.value.has(id)) {
-    console.log('Est');
     selectedTasks.value.delete(id)
   } else {
     selectedTasks.value.add(id)
@@ -42,12 +41,11 @@ const toogleTasksSelected = (id: string) => {
 const handleSubmit = async () => {
   if (!newTask.value.title.trim()) return
   await store.addTask(newTask.value)
-  clearNewTask()
+  clearNewTask
 };
 
 
 const openEditModal = (task: Task) => {
-  console.log(task);
   showModal.value = !showModal.value;
   editingTask.value = { ...task }
 
@@ -59,9 +57,6 @@ const saveEditTask = async () => {
   showModal.value = false
 }
 
-// const doneTask = async () {
-//   editingTask.value?.completed = true
-// }
 
 const deleteSelectedTasks = async (id: string | null = null) => {
   // Если передали ид то удалим по нему
@@ -93,7 +88,6 @@ const activeFilter = ref<FilterType>(FilterType.ALL)
 
 
 const filteredTasks = computed(() => {
-  // console.log(debouncedSearch);
   const query = debouncedSearch.value.toLowerCase().trim()
   let tasks = store.getSortedTasks
 
@@ -132,8 +126,8 @@ onMounted(async () => {
         <div :class="$style.contentFilter">
           <select :class="$style.filterTasks" v-model="activeFilter" @change="clearSearchQuery">
             <option :value="FilterType.ALL">Все задачи</option>
-            <option :value="FilterType.ACTIVE">Только выполненные</option>
-            <option :value="FilterType.COMPLETED">Только не выполненные</option>
+            <option :value="FilterType.ACTIVE">Только не выполненные</option>
+            <option :value="FilterType.COMPLETED">Только выполненные</option>
           </select>
           <input :class="$style.searchTasks" placeholder="поиск..." type="text" v-model="searchQuery">
         </div>
@@ -145,7 +139,7 @@ onMounted(async () => {
                 @change="toogleTasksSelected(task.id)" />
               <UILabel full-width="" variant="primary" :spacing="{ x: 'md', y: 'sm' }" :class="$style.labelOptions">
                 <div :class="$style.labelTitle">{{ task.title }}</div>
-                <div>
+                <div :class="$style.taskWrapper">
                   <UILabel :text="task.completed ? 'завершена' : 'новая'" :variant="task.completed ? 'success' : 'done'"
                     :spacing="{ x: 'md', y: 'xs' }" text-color="white" />
                   <UIButton @click="openEditModal(task)" :spacing="{ x: 'md', y: 'sm' }" variant="accent"
@@ -267,6 +261,11 @@ onMounted(async () => {
   flex-direction: column;
   gap: var(--space-md);
   overflow-y: auto;
+}
+
+.taskWrapper {
+  display: flex;
+  gap: var(--space-sm);
 }
 
 .labelOptions {
