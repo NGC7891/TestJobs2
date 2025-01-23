@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, computed, useCssModule } from 'vue'
+import { computed, useCssModule } from 'vue'
 import type { Variant, TextColor, Spacing, BorderRadius } from './types'
 
 const styles = useCssModule()
@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<labelProps>(), {
 })
 
 
-// Вычислим, что бы не пересчитовать
+// Вычислим, что бы не пересчитывать
 const labelClasses = computed(() => [
   styles.label,
   styles[`label-spacing-x_${props.spacing.x}`],

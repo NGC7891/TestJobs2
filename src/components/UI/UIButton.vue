@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, computed, useCssModule } from 'vue'
+import { computed, useCssModule } from 'vue'
 import type { Variant, TextColor, Spacing, BorderRadius } from './types'
 
 const styles = useCssModule()
@@ -32,7 +32,7 @@ const emit = defineEmits<{
   (e: 'click', event: MouseEvent): void
 }>()
 
-// Вычислим, что бы не пересчитовать
+// Вычислим, что бы не пересчитывать
 const buttonClasses = computed(() => [
   styles.button,
   styles[`button-spacing-x_${props.spacing.x}`],

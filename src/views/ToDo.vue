@@ -59,7 +59,7 @@ const saveEditTask = async () => {
 
 
 const deleteSelectedTasks = async (id: string | null = null) => {
-  // Если передали ид то удалим по нему
+  // Если передали ид то удалим по id
   if (id) {
     await store.removeTask(id)
   } else {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, computed, useCssModule, ref, watchEffect } from 'vue'
+import { computed, useCssModule, ref, watchEffect } from 'vue'
 import { onClickOutside, useScrollLock, onKeyStroke } from '@vueuse/core'
 import type { Spacing, BorderRadius } from './types'
 
@@ -26,7 +26,6 @@ const emit = defineEmits<{
 
 const modalRef = ref<HTMLElement | null>(null)
 
-// Оптимизированные классы модального окна
 const getModalClasses = computed(() => ({
   [styles.modal]: true,
   [styles[`modal_spacing-x_${props.spacing.x}`]]: true,

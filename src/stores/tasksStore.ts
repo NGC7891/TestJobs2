@@ -1,10 +1,10 @@
-// Тут будем работать с хранением и обработкой данных в локальном хранилище,
+// Тут будем работать с хранением и обработкой данных в локальном хранилище
 // При необходимости можно заменить на логику работы с серваком
 
 import { defineStore } from 'pinia'
 import dayjs from 'dayjs'
 import { useUID } from '@/composables/useUID'
-import type { Task } from '@/types'
+import type { Task, CreateTaskDTO } from '@/types'
 
 // Ключ локального хранилища
 const LOCAL_KEY_TODO = 'tasks' as const
@@ -41,7 +41,7 @@ export const useTasksStore = defineStore('tasks', {
       }
     },
 
-    async addTask(task: Task) {
+    async addTask(task: CreateTaskDTO) {
       const newTask: Task = {
         id: generateUID(),
         ...task,

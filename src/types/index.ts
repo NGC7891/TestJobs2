@@ -11,6 +11,8 @@ export interface Task {
   completed: boolean
 }
 
+export type CreateTaskDTO = Omit<Task, 'id' | 'dataCreated' | 'completed'>
+
 export type NewTask = Pick<Task, 'title' | 'description' | 'colorStatus'>
 
 export type GenerateUIDFunction = () => string
