@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { useTasksStore } from '@/stores/tasksStore';
-import type { Task, NewTask } from '@/types';
+import type { Task, CreateTaskDTO } from '@/types';
 import { useDebounce } from '@vueuse/core';
 import { UIButton, UILabel, UIModal } from '@/components/UI';
 
@@ -14,7 +14,7 @@ const editingTask = ref<Task | null>(null);
 const searchQuery = ref('');
 const debouncedSearch = useDebounce(searchQuery, 200)
 
-const newTask = ref<NewTask>({
+const newTask = ref<CreateTaskDTO>({
   title: '',
   description: '',
   colorStatus: 'blue'
@@ -69,7 +69,7 @@ const deleteSelectedTasks = async (id: string | null = null) => {
   }
 }
 
-const doneTask = (task: Task) => {
+const doneTask = (task: Task | null) => {
   if (!task) return
 
   store.updateTask({
@@ -137,7 +137,7 @@ onMounted(async () => {
             <li :class="$style.task" v-for="task in filteredTasks" :key="task.id">
               <input :class="$style.taskCheckbox" type="checkbox" :checked="selectedTasks.has(task.id)"
                 @change="toogleTasksSelected(task.id)" />
-              <UILabel full-width="" variant="primary" :spacing="{ x: 'md', y: 'sm' }" :class="$style.labelOptions">
+              <UILabel full-width variant="primary" :spacing="{ x: 'md', y: 'sm' }" :class="$style.labelOptions">
                 <div :class="$style.labelTitle">{{ task.title }}</div>
                 <div :class="$style.taskWrapper">
                   <UILabel :text="task.completed ? 'завершена' : 'новая'" :variant="task.completed ? 'success' : 'done'"

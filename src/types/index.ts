@@ -12,8 +12,7 @@ export interface Task {
 }
 
 export type CreateTaskDTO = Omit<Task, 'id' | 'dataCreated' | 'completed'>
-
-export type NewTask = Pick<Task, 'title' | 'description' | 'colorStatus'>
+// export type NewTask = Pick<Task, 'title' | 'description' | 'colorStatus'>
 
 export type GenerateUIDFunction = () => string
 

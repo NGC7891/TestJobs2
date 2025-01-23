@@ -16,7 +16,7 @@ export default defineConfig({
     modules: {
       // Настройки CSS модулей
       localsConvention: 'camelCase',
-      scopeBehavior: 'local',
+      scopeBehaviour: 'local',
       generateScopedName: '[name]_[local]_[hash:base64:5]',
     },
   },
